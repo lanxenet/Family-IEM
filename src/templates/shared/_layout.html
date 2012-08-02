@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="/content/main.css" />
+{% block link_script %} {% endblock %}
+
+<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<div class="page">
+		<div id="header">
+			<div id="title">
+				<h1>Family Income and Expenses Management(BETA)</h1>
+			</div>
+			<div id="logindisplay">{% include '_logon_partial.html' %}</div>
+			<div id="menucontainer">
+				<ul id="menu">
+				    <li><a href="/account">ACCOUNT</a></li>
+					<li><a href="/about">HELP</a></li>
+					<li><a href="/about">ABOUT</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="main">{% block content %}{% endblock %}</div>
+		<div id="footer">
+			{% block footer %}
+			<hr>
+			<p>Thanks for visiting my site.</p>
+			{% endblock %}
+		</div>
+	</div>
+</body>
+</html>

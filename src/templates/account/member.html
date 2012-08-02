@@ -1,0 +1,8 @@
+<table>
+	{% for member in members %}
+	<tr>
+		<td>{{member.nickname()}}</td>
+		<td>{{member.email()}}</td>
+	</tr>
+	{% endfor %}
+</table>

@@ -1,0 +1,6 @@
+{% extends "_layout.html" %} {% block title %}Home{% endblock %} 
+{%block content %} {% if details %}
+<div id="content-right">{% include 'list.html' %}</div>
+{% endif %}
+<div id="content-left">{% include 'edit.html' %}</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Type</th>
+		<th>Subject</th>
+		<th>Amount</th>		
+		<th>Stakeholder</th>
+		<th>Creator</th>
+		<th>Description</th>
+	</tr>
+
+	{% for item in details %}
+	<tr>
+		<td>{{item.date}}</td>
+		<td>{{type_dict[item.ie_type]}}</td>
+		<td>{{subject_dict[item.subject]}}</td>
+		<td>{{item.amount}}</td>		
+		<td>{{item.stakeholder}}</td>
+		<td>{{item.creator}}</td>
+		<td>{{item.description}}</td>
+	</tr>
+	{% endfor %}
+</table>

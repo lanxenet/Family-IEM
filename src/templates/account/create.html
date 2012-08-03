@@ -1,0 +1,68 @@
+<script type="text/javascript">
+//-->
+
+</script>
+
+<div class="header_actions popup_wrapper">
+	<a href="#" id="new_member_button"
+		onclick="showHeaderActionsOverlay(); return false;">Add Member +</a>
+	<div id="add_overlay_container" class="hideable" style="display: none">
+		<div id="add_member_overlay" class="actions_overlay">
+			<div class="tab">
+				<div>
+					<span id="add_member_span" class="ama_overlay">Add Member</span>
+				</div>
+			</div>
+			<div class="mid">
+				<div id="add_member_form" class="inner">
+
+					<form action="/account/memberships" method="post"
+						onsubmit="$('157897700_add_account_member').style.visibility='visible';$('add_member_button').disable();j(document).off('tracker:beforeRjsReplaceHtml');j(document).on('tracker:beforeRjsReplaceHtml', function (){  var elem = $('157897700_add_account_member');  if (!elem){ throw 'Missing element in RemoteSpinner.remote_options. Maybe tracker:beforeRjsReplaceHtml not triggered early enough (see lib/extensions/action_view/java_script_generator.rb).'; }  elem.style.visibility='hidden';  $('add_member_button').enable();  j(document).off('tracker:beforeRjsReplaceHtml');});; new Ajax.Request('/accounts/391455/memberships', {asynchronous:true, evalScripts:true, method:'post', onComplete:function(request){$('157897700_add_account_member').style.visibility='hidden';$('add_member_button').enable();}, parameters:Form.serialize(this)}); return false;">
+						<div style="margin: 0; padding: 0; display: inline">
+							<input name="authenticity_token" type="hidden"
+								value="aFKsZgzZHrDs25h5Ce78JvYJc3Dw7tVY7btmGbZSBUY=">
+						</div>
+						<label for="members_for_lookup">Name or Email</label> <input
+							type="text" id="members_for_lookup" name="member_string"
+							size="30" value=""
+							onkeyup="if (event.keyCode == Event.KEY_RETURN &amp;&amp; $('members_for_lookup_auto_complete').style.display == 'none') { $('add_member_button').click(); }">
+
+						<div class="membership_roles">
+							<label for="account_role">Account Role</label> <select
+								id="membership_account_role_none"
+								name="membership[account_role]"
+								onchange="AccountMembershipActions.setAppropriateCheckBoxState(this)">
+								<option value="Admin">Admin</option>
+								<option value="Member" selected="selected">Member</option>
+							</select>
+						</div>
+
+						<div class="membership_permissions">
+							<h4>Permissions</h4>
+
+							<div class="membership_permissions_group">
+								<div class="disable_for_admin"></div>
+							</div>
+							<div class="membership_permissions_group">
+								<input name="membership[project_creator]" type="hidden"
+									value="0"><input id="membership_project_creator"
+									name="membership[project_creator]" type="checkbox" value="1">
+								<label for="membership_project_creator">Project Creator</label>
+								<br>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="button_group">
+							<a href="#"
+								onclick="AccountMembershipActions.removeOverlays(); return false;">cancel</a>
+							<input type="submit" id="add_member_button" value="Add"
+								name="commit">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="auto_complete" id="members_for_lookup_auto_complete"></div>
+	</div>
+</div>

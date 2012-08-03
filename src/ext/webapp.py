@@ -29,6 +29,7 @@ class RequestHandler(webapp2.RequestHandler):
                 account.user = self.user
                 account.family_name = self.user.nickname()
                 account.put()
+                self.family = account
                 
     def get(self):
         self.user = users.get_current_user()

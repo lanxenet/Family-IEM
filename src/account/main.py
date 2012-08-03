@@ -13,10 +13,17 @@ from model import models
 
 class Members(webapp.RequestHandler):
     def get_internal(self):
-        details = models.Family.gql("WHERE creator = :creator and date >= :begin ORDER BY date DESC",
-        creator=users.get_current_user(),
-        begin=date(today.year, today.month, 1))
-        return 'member.html', {}
+        members = models.Family.gql("WHERE family_name = :family", family = self.family)
+        values = {
+            'members': members}
+        return 'member.html', values
+
+class Memberships(webapp.RequestHandler):
+    def get_internal(self):
+        members = models.Family.gql("WHERE family_name = :family", family = self.family)
+        values = {
+            'members': members}
+        return 'member.html', values
     
 class Settings(webapp.RequestHandler):
     def __init__(self, request=None, response=None):
@@ -28,5 +35,6 @@ class Settings(webapp.RequestHandler):
     
 
 app = webapp.WSGIApplication([('/account', Members),
+                              ('memberships', Memberships),
                               ('/account/settings', Settings)],
                               debug=True)

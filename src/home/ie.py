@@ -9,7 +9,7 @@ from datetime import date
 from google.appengine.api import users
 
 from ext import webapp
-from models import models
+from model import models
 
 class Submit(webapp.RequestHandler):            
     def post(self):

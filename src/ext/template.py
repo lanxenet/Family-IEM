@@ -4,7 +4,7 @@ import settings
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIRS))
 
-def render(template_path, template_dict, debug=False):
+def render(template_path, template_dict):
     return env.get_template(template_path).render(template_dict)
 
 #use django template

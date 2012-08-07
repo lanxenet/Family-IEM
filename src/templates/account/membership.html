@@ -1,0 +1,19 @@
+{% extends "_layout.html" %} {%block link_script %}
+
+<script language="javascript" type="text/javascript"
+	src="/content/scripts/membership.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/content/scripts/jquery-1.7.1.js"></script>
+
+{% endblock %} {% block title %}Members{% endblock %} {%block content %}
+
+<div id="membership_content">
+	<div class="content_section">
+		{% include 'member_add.html' %}
+		<h2>Family Members</h2>
+		<hr />
+		{% if members %} {% include 'member_list.html' %} {% endif %}
+	</div>
+</div>
+
+{% endblock %}

@@ -15,3 +15,9 @@ indexes:
   - name: creator
   - name: date
     direction: desc
+
+- kind: Detail
+  properties:
+  - name: family
+  - name: date
+    direction: desc

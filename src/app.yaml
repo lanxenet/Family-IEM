@@ -9,7 +9,7 @@ handlers:
   static_dir: content
 
 - url: /account/.*
-  script: account.main.app
+  script: account.membership.app
       
 - url: /help/.*
   script: shared.help.app
@@ -18,7 +18,7 @@ handlers:
   script: shared.help.app
   
 - url: /.*
-  script: home.main.app
+  script: home.index.app
 
 libraries:
 - name: jinja2

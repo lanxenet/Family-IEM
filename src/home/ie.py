@@ -6,7 +6,6 @@ Created on 2012-7-30
 '''
 
 from datetime import date
-from google.appengine.api import users
 
 from ext import webapp
 from model import models
@@ -22,7 +21,8 @@ class Submit(webapp.RequestHandler):
         detail.ie_type = ie_type
         amount = float(self.request.get('amount').replace(',',''))
         detail.amount = amount if ie_type % 2 == 1 else amount * -1
-        detail.creator = users.get_current_user()
+        detail.family = self.family.family_name
+        detail.creator = self.user
         detail.stakeholder = self.request.get('stakeholder')
         detail.description = self.request.get('description')
 

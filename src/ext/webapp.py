@@ -20,16 +20,17 @@ class RequestHandler(webapp2.RequestHandler):
     def __init__(self, request=None, response=None):
         webapp2.RequestHandler.__init__(self, request, response)
         self.user = users.get_current_user()
-        self.url = 'Login'
-        self.url_linktext = None
+        self.url = None
+        self.url_linktext = 'Login'
         if self.user:
-            self.family = models.Family.gql("WHERE user = :user", self.user)
+            self.family = models.Family.gql("WHERE user = :user", user=self.user).get()
             if not self.family:
                 account = models.Family()
                 account.user = self.user
+                account.role = "Owner"
                 account.family_name = self.user.nickname()
                 account.put()
-                self.family = account
+                self.family = account                
                 
     def get(self):
         self.user = users.get_current_user()
@@ -37,11 +38,11 @@ class RequestHandler(webapp2.RequestHandler):
             self.url = users.create_logout_url(self.request.uri)
             self.url_linktext = 'Logout'
         else:
-#            self.url = users.create_login_url(self.request.uri)
-#            self.url_linktext = 'Login'
+            self.url = users.create_login_url(self.request.uri)
+            self.url_linktext = 'Login'
             self.redirect(self.url)
             
-        template_name, template_dict = self.get_internal()
+        template_dict, template_name = self.get_internal()
         
         template_dict['user'] = self.user
         template_dict['url'] = self.url
@@ -50,6 +51,10 @@ class RequestHandler(webapp2.RequestHandler):
         return self.response.out.write(template.render(template_name, template_dict))  
 
     def get_internal(self):
+        template_dict = self.get_with_default_template()
+        return template_dict, self.get_default_template_name()
+    
+    def get_with_default_template(self):
         pass
         
     def port(self):
@@ -62,12 +67,19 @@ class RequestHandler(webapp2.RequestHandler):
             self.url_linktext = 'Login'
             self.redirect(self.url)
         
-        template_name, template_dict = self.post_internal()        
+        template_dict, template_name = self.post_internal() 
+                
         return self.response.out.write(template.render(template_name, template_dict)) 
     
     def post_internal(self):
-        pass  
+        template_dict = self.post_with_default_template()
+        return template_dict, self.get_default_template_name()
+    
+    def post_with_default_template(self):
+        pass
+    
+    def get_default_template_name(self):
+        return (self.__class__.__name__ + '.html').lower()
     
 class WSGIApplication(webapp2.WSGIApplication):
     """A EXT WSGI-compliant application."""
-        

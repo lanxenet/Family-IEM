@@ -6,10 +6,12 @@ class Detail(db.Model):
     amount = db.FloatProperty()
     ie_type = db.IntegerProperty()
     subject = db.IntegerProperty()
+    family = db.StringProperty()
     creator = db.UserProperty()
     stakeholder = db.StringProperty()
     description = db.StringProperty()
     
 class Family(db.Model):
     user = db.UserProperty()
-    family_name = db.StringListProperty()
+    role = db.StringProperty()
+    family_name = db.StringProperty()

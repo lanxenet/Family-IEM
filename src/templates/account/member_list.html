@@ -1,0 +1,11 @@
+<div id="members">
+	<table class="listing_table">
+		{% for member in members %}
+		<tr>
+			<td>{{member.user.nickname()}}</td>
+			<td>{{member.role}}</td>
+			<td>{{member.user.email()}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>

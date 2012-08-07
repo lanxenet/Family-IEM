@@ -34,15 +34,12 @@ class RequestHandler(webapp2.RequestHandler):
                 
     def get(self):
         self.user = users.get_current_user()
-        if self.user:
-            self.url = users.create_logout_url(self.request.uri)
-            self.url_linktext = 'Logout'
-        else:
-            self.url = users.create_login_url(self.request.uri)
-            self.url_linktext = 'Login'
-            self.redirect(self.url)
-            
-        template_dict, template_name = self.get_internal()
+        if not self.user:
+            return self.redirect(users.create_login_url(self.request.uri))
+        
+        self.url = users.create_logout_url(self.request.uri)
+        self.url_linktext = 'Logout'            
+        template_dict, template_name = self.get_handler()
         
         template_dict['user'] = self.user
         template_dict['url'] = self.url
@@ -50,7 +47,7 @@ class RequestHandler(webapp2.RequestHandler):
         
         return self.response.out.write(template.render(template_name, template_dict))  
 
-    def get_internal(self):
+    def get_handler(self):
         template_dict = self.get_with_default_template()
         return template_dict, self.get_default_template_name()
     
@@ -59,19 +56,17 @@ class RequestHandler(webapp2.RequestHandler):
         
     def port(self):
         self.user = users.get_current_user()
-        if self.user:
-            self.url = users.create_logout_url(self.request.uri)
-            self.url_linktext = 'Logout'
-        else:
-            self.url = users.create_login_url(self.request.uri)
-            self.url_linktext = 'Login'
-            self.redirect(self.url)
+        if not self.user:
+            return self.redirect(users.create_login_url(self.request.uri))
         
-        template_dict, template_name = self.post_internal() 
-                
+        self.url = users.create_logout_url(self.request.uri)
+        self.url_linktext = 'Logout'           
+    
+        template_dict, template_name = self.post_handler() 
+            
         return self.response.out.write(template.render(template_name, template_dict)) 
     
-    def post_internal(self):
+    def post_handler(self):
         template_dict = self.post_with_default_template()
         return template_dict, self.get_default_template_name()
     

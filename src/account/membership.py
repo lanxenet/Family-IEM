@@ -44,7 +44,7 @@ class Settings(webapp.RequestHandler):
         webapp.RequestHandler.__init__(self, request, response)
         
         
-    def get_internal(self):
+    def get_handler(self):
         return {}, 'settings.html'
     
 

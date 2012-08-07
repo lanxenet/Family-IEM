@@ -26,7 +26,7 @@ class Home(webapp.RequestHandler):
             self.subject_dict[value] = key
         
         
-    def get_internal(self):
+    def get_handler(self):
         today = date.today()
         details = models.Detail.gql("WHERE family = :family and date >= :begin ORDER BY date DESC",
            family=self.family.family_name,

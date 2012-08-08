@@ -2,34 +2,18 @@
 
 <script language="javascript" type="text/javascript"
 	src="/content/My97DatePicker/WdatePicker.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/content/scripts/utils.js"></script>
 
 {% endblock %}
 <script type="text/javascript">
 	window.onload = function() {
 		initElement();
-		initEvent();
 	};
 
 	function initElement() {
 		var today = new Date;
 		document.getElementById("datetime").value = today.format('yyyy/MM/dd');
-	}
-
-	function initEvent() {
-		var txtAmount = document.getElementById("input_float");
-		txtAmount.onkeydown = onkeydownEvent; //键盘输入时效果，限制非法字符输入
-		txtAmount.onblur = onblurEvent; //焦点离开时的效果(格式化数字)
-		txtAmount.onpaste = function() {
-			var text = clipboardData.getData("text");
-			if (valid(text)) {
-				clipboardData.setData("text", text);
-			} else {
-				return false;
-			}
-		}; //禁止粘贴1.4
-	}
+		document.getElementById("input_float").focus();
+	};
 </script>
 
 
@@ -40,7 +24,7 @@
 		<label>Amount</label>
 	</div>
 	<div class="editor-field">
-		<input type="text" name="amount" id="input_float"
+		<input type="text" name="amount" id="input_float" number="true"
 			onclick="this.value=this.value.replace(/,/g,'');" />
 	</div>
 
@@ -48,12 +32,17 @@
 		<label>Type/Subject</label>
 	</div>
 	<div class="editor-field">
-		<select name="ie_type" style="width: 100px"> {% for option,
-			value in ie_type %}
-			<option value="{{value}}">{{option}}</option> {% endfor %}
-		</select> <select name="subject" style="width: 100px"> {% for option,
-			value in subjects %}
-			<option value="{{value}}">{{option}}</option> {% endfor %}
+		<select name="ie_type" style="width: 100px"> 
+		  {% for option, value in ie_type %}
+			<option value="{{value}}">{{option}}</option> 
+		  {% endfor %}
+		</select> 
+		<select name="subject" style="width: 100px" editable="true"> 
+		  {% for option in subjects %}
+			<option value="{{option}}">{{option}}</option> 
+		  {% endfor %}
+			<option value="other">Other</option>
+			<option value="">Add Subject</option>
 		</select>
 	</div>
 	<div class="editor-field"></div>

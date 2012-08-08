@@ -4,7 +4,7 @@ Created on 2012-7-30
 
 @author: lanxe
 '''
-
+import logging
 from google.appengine.api import users
 from ext import webapp
 from model import models
@@ -26,7 +26,11 @@ class AddMember(webapp.RequestHandler):
             family.role = self.request.get('account_role')
             family.family_name = self.family.family_name    
             family.put()
-            self.send_mail(member)
+            try:
+                self.send_mail(member)
+            except Exception, e:
+                logging.info(e)
+                
         self.redirect('/account/membership')
 
     def send_mail(self, receiver):

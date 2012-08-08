@@ -15,13 +15,11 @@ IE_TYPE = [
     ("Income", 1),
     ("Lend", 2),
     ("Refund", 3),
-    ("Other", 4),
 ]
 
 SUBJECTS = [
-    ("meals", 0),
-    ("transportation", 1),
-    ("Other", 4),
+    "meals",
+    "transportation",
 ]
 
 

@@ -16,7 +16,17 @@ class Submit(webapp.RequestHandler):
         
         year, month, day = map(int, self.request.get('date').split("/"))
         detail.date = date(year, month, day)
-        detail.subject = int(self.request.get('subject'))
+        subjectName = self.request.get('subject')
+        subjects = models.Subject.gql("WHERE name = :name AND family IN('default', :family)", 
+                                      name=subjectName, 
+                                      family=self.family.family_name)
+        if not subjects.count():
+            subject = models.Subject()
+            subject.name = subjectName
+            subject.family = self.family.family_name
+            subject.put()
+            
+        detail.subject = subjectName
         ie_type = int(self.request.get('ie_type'))
         detail.ie_type = ie_type
         amount = float(self.request.get('amount').replace(',',''))

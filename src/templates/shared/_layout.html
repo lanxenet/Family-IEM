@@ -2,6 +2,11 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="/content/main.css" />
+<script language="javascript" type="text/javascript"
+	src="/content/scripts/jquery-1.7.1.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/content/scripts/utils.js"></script>
+
 {% block link_script %} {% endblock %}
 
 <title>{% block title %}{% endblock %}</title>
@@ -15,8 +20,8 @@
 			<div id="logindisplay">{% include '_logon_partial.html' %}</div>
 			<div id="menucontainer">
 				<ul id="menu">
-				    <li><a href="/">HOME</a></li>
-				    <li><a href="/account/membership">ACCOUNT</a></li>
+					<li><a href="/">HOME</a></li>
+					<li><a href="/account/membership">ACCOUNT</a></li>
 					<li><a href="/about">HELP</a></li>
 					<li><a href="/about">ABOUT</a></li>
 				</ul>

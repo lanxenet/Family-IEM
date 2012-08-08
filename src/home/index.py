@@ -17,14 +17,15 @@ class Home(webapp.RequestHandler):
     def __init__(self, request=None, response=None):
         webapp.RequestHandler.__init__(self, request, response)
         self.type_dict = {}
-        self.subject_dict = {}
+        self.subjects = []
         import settings
         for key, value in settings.IE_TYPE:
             self.type_dict[value] = key
-        
-        for key, value in settings.SUBJECTS:
-            self.subject_dict[value] = key
-        
+        if self.user:
+            subjects = models.Subject.gql("WHERE family IN('default', :family)", 
+                                      family=self.family.family_name)
+            for subject in subjects:
+                self.subjects.append(subject.name)
         
     def get_handler(self):
         today = date.today()
@@ -35,10 +36,9 @@ class Home(webapp.RequestHandler):
         import settings
         template_values = {
             'type_dict': self.type_dict,
-            'subject_dict': self.subject_dict,
             'details': details if details.count() > 0 else None,
             'ie_type': settings.IE_TYPE,
-            'subjects': settings.SUBJECTS,
+            'subjects': self.subjects,
             }
         
         return  template_values, 'index.html'

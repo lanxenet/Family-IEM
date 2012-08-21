@@ -19,10 +19,11 @@ class Membership(webapp.RequestHandler):
 class AddMember(webapp.RequestHandler):
     def post(self):
         member = self.request.get('member_string')
-        members = models.Family.gql("WHERE family_name = :family AND user = :user", family=self.family.family_name, user=users.User(email=member))
+        members = models.Family.gql("WHERE family_name = :family AND email = :email", family=self.family.family_name, email=member)
         if not members.count():
             family = models.Family()          
             family.user = users.User(email=member)
+            family.email = member.lower()
             family.role = self.request.get('account_role')
             family.family_name = self.family.family_name    
             family.put()

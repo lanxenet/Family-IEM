@@ -1,0 +1,13 @@
+Family-IEM
+=======
+Family-IEM is an open source version of simple family income and expenses management. 
+Application are available at http://iem.family-apps.me/
+
+Family-IEM is licensed under the Apache Licence, Version 2.0
+(http://www.apache.org/licenses/LICENSE-2.0.html).
+
+
+Prerequisites
+-------------
+
+Family-IEM runs on Python 2.7, GAE

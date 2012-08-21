@@ -10,9 +10,11 @@ class Detail(db.Model):
     creator = db.UserProperty()
     stakeholder = db.StringProperty()
     description = db.StringProperty()
+    status = db.StringProperty(default="0")
     
 class Family(db.Model):
     user = db.UserProperty()
+    email = db.StringProperty()
     role = db.StringProperty()
     family_name = db.StringProperty()
 

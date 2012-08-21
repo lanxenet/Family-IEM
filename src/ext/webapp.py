@@ -23,10 +23,11 @@ class RequestHandler(webapp2.RequestHandler):
         self.url = None
         self.url_linktext = 'Login'
         if self.user:
-            self.family = models.Family.gql("WHERE user = :user", user=self.user).get()
+            self.family = models.Family.gql("WHERE email = :email", email=self.user.email().lower()).get()
             if not self.family:
                 account = models.Family()
                 account.user = self.user
+                account.email = self.user.email()
                 account.role = "Owner"
                 account.family_name = self.user.nickname()
                 account.put()

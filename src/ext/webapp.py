@@ -7,7 +7,7 @@ Created on 2012-7-30
 
 import webapp2
 
-from model import models
+from apps.model import models
 from ext import template
 from google.appengine.api import users
 

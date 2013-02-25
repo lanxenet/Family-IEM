@@ -1,39 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="/content/main.css" />
-<script language="javascript" type="text/javascript"
-	src="/content/scripts/jquery-1.7.1.min.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/content/scripts/utils.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% include "./_layout/_meta.html" %}
+    {% include "./_layout/_styles.html" %}
 
-{% block link_script %} {% endblock %}
-
-<title>{% block title %}{% endblock %}</title>
+    {% block link_script %} {% endblock %}
+    
+    {% block extra_header %}
+    {% endblock %}
 </head>
 <body>
-	<div class="page">
-		<div id="header">
-			<div id="title">
-				<h1>Family Income and Expenses Management(BETA)</h1>
-			</div>
-			<div id="logindisplay">{% include '_logon_partial.html' %}</div>
-			<div id="menucontainer">
-				<ul id="menu">
-					<li><a href="/">HOME</a></li>
-					<li><a href="/account/membership">ACCOUNT</a></li>
-					<li><a href="/about">HELP</a></li>
-					<li><a href="/about">ABOUT</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="main">{% block content %}{% endblock %}</div>
-		<div id="footer">
-			{% block footer %}
-			<hr>
-			<p>Thanks for visiting my site.</p>
-			{% endblock %}
-		</div>
-	</div>
+    {% include "./_layout/_waiting.html " %}
+    
+    {% include "./_layout/_navbar.html" %}
+        
+	<div class="container">       
+        {% block container_top %} 
+        {% endblock %}
+    
+       <!-- <div class="row"> -->
+        <div class="row">
+            {% block sidebar %}
+            {% endblock %} 
+            
+            {% block content%}
+            {% endblock %}
+        </div>
+    </div>
+    
+    <footer class="footer">
+        {% include "./_layout/_footer.html" %}
+    </footer>
+    
+    {% include "./_layout/_scripts.html" %}
+    
+    {% block extra_scripts %}
+    {% endblock %}  
 </body>
 </html>

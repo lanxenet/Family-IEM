@@ -1,42 +1,40 @@
-<div class="header_actions popup_wrapper">
-	<a href="#" id="new_member_button"
-		onclick="AccountMembershipActions.showHeaderActionsOverlay(); return false;">Add
-		Member +</a>
-	<div id="add_overlay_container" class="hideable" style="display: none">
-		<div id="add_member_overlay" class="actions_overlay">
-			<div class="tab">
-				<div>
-					<span id="add_member_span" class="ama_overlay">Add Member</span>
-				</div>
-			</div>
-			<div class="mid">
-				<div id="add_member_form" class="inner">
-					<form action="/account/addmember" method="post">
-						<label for="members_for_lookup">Name or Email</label> <input
-							type="text" id="members_for_lookup" name="member_string"
-							size="30" value=""
-							onkeyup="if (event.keyCode == Event.KEY_RETURN) { $('add_member_button').click(); }">
+<a id="add-member" class="btn btn-link"
+    data-placement="bottom"
+    data-toggle="popover">Add Member +</a>
 
-						<div class="membership_roles">
-							<label for="account_role">Account Role</label> <select
-								id="membership_account_role_none"
-								name="account_role"
-								onchange="AccountMembershipActions.setAppropriateCheckBoxState(this)">
-								<option value="Admin">Admin</option>
-								<option value="Member" selected="selected">Member</option>
-							</select>
-						</div>
+<div id="add-member-form-title"
+    class="hide"
+    onclick="AccountMembershipActions.showHeaderActionsOverlay(); return false;">Add Member</div>
+<div id="add-member-form" class="hide">
+    <form class="form-horizontal" action="/account/addmember" method="post">
+            <div class="control-group">
+                <label class="control-label" for="inputNameOrEmail">Name or Email</label>
+                <div class="controls">
+                     <input type="text" name="member_string" id="inputNameOrEmail"
+                        size="30"
+                        value=""
+                        placeholder="Name or Email"
+                        onkeyup="if (event.keyCode == Event.KEY_RETURN) { $('add_member_button').click(); }">
+                </div>
 
-						<div class="button_group">
-							<a href="#"
-								onclick="AccountMembershipActions.removeOverlays(); return false;">cancel</a>
-							<input type="submit" id="add_member_button" value="Add"
-								name="commit">
-						</div>
+            </div>
 
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="control-group">
+                <label class="control-label" for="inputRole">Account Role</label>
+                <div class="controls">
+                    <select id="inputRole" name="account_role" placeholder="Account Role">
+                        <option value="Admin">Admin</option>
+                        <option value="Member" selected="selected">Member</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="control-group pull-right">
+              <a type="submit" class="btn btn-link"
+                    onclick="AccountMembershipActions.removeOverlays(); return false;">cancel</a>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+    </form>
 </div>

@@ -1,6 +1,32 @@
-{% extends "_layout.html" %} {% block title %}Home{% endblock %} {%block
-content %} {% if details %}
-<div id="content-right">{% include 'detail_list.html' %}</div>
-{% endif %}
-<div id="content-left">{% include 'detail_add.html' %}</div>
+{% extends "_layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        initElement();
+    });
+
+    function initElement() {
+        var today = new Date;
+        $("#inputData").val(today.format('dd/MM/yyyy'));
+        $("#inputAmount").focus();
+
+    };
+</script>
+{% endblock %}
+
+{%block content %}
+
+<div id="left" class="span5">
+    {% include 'detail_add.html' %}
+</div>
+
+<div id="right" class="span7">
+    {% if details %}
+        {% include 'detail_list.html' %}
+    {% endif %}
+</div>
+
 {% endblock %}

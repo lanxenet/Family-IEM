@@ -1,17 +1,38 @@
-{% extends "_layout.html" %} {%block link_script %}
+{% extends "_layout.html" %}
 
-<script language="javascript" type="text/javascript"
-	src="/content/scripts/membership.js"></script>
+{%block extra_scripts %}
 
-{% endblock %} {% block title %}Members{% endblock %} {%block content %}
+<script type="text/javascript" src="/static/js/membership.js"></script>
+<script type="text/javascript">
+    $('#add-member').popover({
+        html: true,
+        trigger: 'click',
+        container: 'body',
+        title: function() {
+            return $("#add-member-form-title").html();
+        },
+        content: function() {
+            return $("#add-member-form").html();
+        }
+    });
+</script>
 
-<div id="membership_content">
-	<div class="content_section">
-		{% include 'member_add.html' %}
-		<h2>Family Members</h2>
-		<hr />
-		{% if members %} {% include 'member_list.html' %} {% endif %}
-	</div>
+{% endblock %}
+
+{% block title %}Members{% endblock %}
+
+{%block content %}
+<div class="container">
+    <h2>Family Members</h2>
+
+    <div class="iso-bs-example-popover pull-right">
+        {% include 'member_add.html' %}
+    </div>
+
+    {% if members %}
+        {% include 'member_list.html' %}
+    {% endif %}
 </div>
+
 
 {% endblock %}

@@ -1,0 +1,13 @@
+
+<script type="text/javascript" src="/static/ref/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/ref/jquery/jquery.extend.js"></script>
+<script type='text/javascript' src='/static/ref/bootstrap/js/bootstrap.js' ></script>
+<script type='text/javascript' src='/static/ref/bootstrap-datepicker/js/bootstrap-datepicker.js' ></script>
+
+<script type="text/javascript" src="/static/js/utils.js"></script>
+
+<script type="text/javascript">
+    $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class*="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class*=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}});
+    $('#global_waiting').ajaxStart(function() {	$(this).show(); }).ajaxStop(function() { $(this).hide();});
+    $('.dp').datepicker({autoclose: true}).on('changeDate', function(ev){$(ev.target).datepicker('hide');});
+</script>

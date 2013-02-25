@@ -2,6 +2,14 @@
 	$(document).ready(function() {
 		initNumberEdit();
 		initSelectEdit();
+
+        $('ul.nav').children('li').click(function(){
+            var $this = $(this);
+            var $ul = $this.parent('ul');
+            var preview = $ul.find('.active');
+            preview.removeClass('active');
+            $this.addClass('active');
+        });
 	});
 
 	function initSelectEdit() {

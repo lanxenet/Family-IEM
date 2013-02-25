@@ -7,12 +7,12 @@ Created on 2012-7-30
 
 from datetime import date
 from ext import webapp
-from model import models
+from apps.model import models
 
 class About(webapp.RequestHandler):
     def get_with_default_template(self):
         return {}
-    
+
 class Home(webapp.RequestHandler):
     def __init__(self, request=None, response=None):
         webapp.RequestHandler.__init__(self, request, response)
@@ -22,11 +22,11 @@ class Home(webapp.RequestHandler):
         for key, value in settings.IE_TYPE:
             self.type_dict[value] = key
         if self.user:
-            subjects = models.Subject.gql("WHERE family IN('default', :family)", 
+            subjects = models.Subject.gql("WHERE family IN('default', :family)",
                                       family=self.family.family_name)
             for subject in subjects:
                 self.subjects.append(subject.name)
-        
+
     def get_handler(self):
         today = date.today()
         details = models.Detail.gql("WHERE family = :family and date >= :begin ORDER BY date DESC",
@@ -40,7 +40,7 @@ class Home(webapp.RequestHandler):
             'ie_type': settings.IE_TYPE,
             'subjects': self.subjects,
             }
-        
+
         return  template_values, 'index.html'
 
 from home import ie

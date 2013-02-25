@@ -3,22 +3,22 @@ version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
-  
+
 handlers:
-- url: /content
-  static_dir: content
+- url: /static
+  static_dir: static
 
 - url: /account/.*
-  script: account.membership.app
-      
+  script: apps.account.app
+
 - url: /help/.*
-  script: shared.help.app
-  
+  script: apps.shared.app
+
 - url: /error/.*
-  script: shared.help.app
-  
+  script: apps.shared.app
+
 - url: /.*
-  script: home.index.app
+  script: apps.home.app
 
 libraries:
 - name: jinja2

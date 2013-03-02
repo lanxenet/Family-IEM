@@ -11,13 +11,6 @@
             </button>
             <a class="brand" href="/">Family-IEM</a>
             <div class="nav-collapse collapse">
-                <p class="navbar-text pull-right">
-                    {% if user %}
-                     Welcome, {{ user.nickname() }}
-                    {% endif %}
-                    <a href="{{ url }}" class="navbar-link"> {{ url_linktext }}</a>
-                </p>
-
                 <ul class="nav">
                     <li>
                         <a href="/account/">ACCOUNT</a>
@@ -53,6 +46,12 @@
                         </ul>
                     </li> -->
                 </ul>
+                <p class="navbar-text pull-right">
+                    {% if user %}
+                     Welcome, {{ user.nickname() }}
+                    {% endif %}
+                    <a href="{{ url }}" class="navbar-link"> {{ url_linktext }}</a>
+                </p>
             </div>
         </div>
     </div>

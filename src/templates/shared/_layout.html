@@ -2,40 +2,40 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% include "./_layout/_meta.html" %}
-    {% include "./_layout/_styles.html" %}
+    {% include '_layout/_meta.html' %}
+    {% include '_layout/_styles.html' %}
 
     {% block link_script %} {% endblock %}
-    
+
     {% block extra_header %}
     {% endblock %}
 </head>
 <body>
-    {% include "./_layout/_waiting.html " %}
-    
-    {% include "./_layout/_navbar.html" %}
-        
-	<div class="container">       
-        {% block container_top %} 
+    {% include '_layout/_waiting.html' %}
+
+    {% include '_layout/_navbar.html' %}
+
+	<div class="container">
+        {% block container_top %}
         {% endblock %}
-    
+
        <!-- <div class="row"> -->
         <div class="row">
             {% block sidebar %}
-            {% endblock %} 
-            
+            {% endblock %}
+
             {% block content%}
             {% endblock %}
         </div>
     </div>
-    
+
     <footer class="footer">
-        {% include "./_layout/_footer.html" %}
+        {% include '_layout/_footer.html' %}
     </footer>
-    
-    {% include "./_layout/_scripts.html" %}
-    
+
+    {% include '_layout/_scripts.html' %}
+
     {% block extra_scripts %}
-    {% endblock %}  
+    {% endblock %}
 </body>
 </html>
